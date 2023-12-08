@@ -25,16 +25,13 @@ export default class NewsApiService {
 
       const data = response.data;
 
-      this.incrementPage();
       return data;
     } catch (error) {
       console.error(error);
     }
   }
 
-  incrementPage() {
-    this.page += 1;
-  }
+
 
   resetPage() {
     this.page = 1;
