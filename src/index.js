@@ -48,7 +48,7 @@ async function fetchGallery() {
   refs.loadMoreBtn.classList.add('is-hidden');
 
   const result = await newsApiService.fetchGallery();
-  const { hits, totalHits } = result;
+  const { hits, total } = result;
   isShown += hits.length;
 
   if (!hits.length) {
@@ -62,18 +62,18 @@ async function fetchGallery() {
   onRenderGallery(hits);
   isShown += hits.length;
 
-  if (isShown < totalHits) {
-    Notify.success(`Hooray! We found ${totalHits} images !!!`);
+  if (isShown < total) {
+    Notify.success(`Hooray! We found ${total} images !!!`);
     refs.loadMoreBtn.classList.remove('is-hidden');
   }
 
-  if (isShown >= totalHits) {
+  if (isShown >= total) {
     Notify.info("We're sorry, but you've reached the end of search results.");
   }
 }
 
-function onRenderGallery(hits) {
-  const markup = hits
+function onRenderGallery(elements) {
+  const markup = elements
     .map(
       ({
         webformatURL,

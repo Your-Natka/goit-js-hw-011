@@ -9,7 +9,7 @@ export default class NewsApiService {
   async fetchGallery() {
     const axiosOptions = {
       method: 'get',
-      url: 'https://pixabay.com/api/',
+      url: 'https://pixabay.com/api/', 
       params: {
         key: '34523545-f21683fd59bfc3e4e2549fe07',
         q: `${this.searchQuery}`,
@@ -25,14 +25,17 @@ export default class NewsApiService {
 
       const data = response.data;
 
+      this.incrementPage();
       return data;
     } catch (error) {
       console.error(error);
     }
   }
 
-
-
+ incrementPage() {
+    this.page += 1;
+ }
+  
   resetPage() {
     this.page = 1;
   }
